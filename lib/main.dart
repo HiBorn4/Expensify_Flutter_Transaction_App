@@ -1,7 +1,4 @@
-
-import 'dart:io';
 // Import the Flutter Material Design package
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 
@@ -202,7 +199,7 @@ class _MyHomePageState extends State < MyHomePage > {
       appBar: appBar,
       body: pageBody,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Platform.isIOS ? Container() : FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
           onPressed: () => _startAddNewTransaction(context),
       ),
