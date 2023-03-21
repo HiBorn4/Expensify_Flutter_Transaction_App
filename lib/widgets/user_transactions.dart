@@ -1,11 +1,9 @@
 // Import the flutter material library
 import 'package:flutter/material.dart';
-
-// Import the NewTransaction class from new_transaction.dart file
-import './new_transaction.dart';
-
 // Import the Transaction model from transaction.dart file
 import '../models/transaction.dart';
+// Import the NewTransaction class from new_transaction.dart file
+import './new_transaction.dart';
 
 // Create a stateful widget named UserTransactions
 class UserTransactions extends StatefulWidget {

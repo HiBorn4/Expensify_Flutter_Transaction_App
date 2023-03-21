@@ -1,5 +1,6 @@
 // Import the Flutter Material Design package
 import 'package:flutter/material.dart';
+
 // import 'package:flutter/services.dart';
 
 // Import the custom widgets for the app
@@ -19,7 +20,7 @@ void main() {
   //   DeviceOrientation.portraitDown,
   // ]);
   runApp(const MyApp());
-  }
+}
 
 // Ihe top-level widget for the app
 class MyApp extends StatelessWidget {
@@ -76,15 +77,15 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-class MyHomePage extends StatefulWidget {
 
+class MyHomePage extends StatefulWidget {
   const MyHomePage({
     super.key
-  }); // A stateful widget that creates a new instance of `_MyHomePageState`.
+  });
 
+  // A stateful widget that creates a new instance of `_MyHomePageState`.
   @override
-  // ignore: library_private_types_in_public_api
-  _MyHomePageState createState() => _MyHomePageState(); // Returns a new state object of `_MyHomePageState`.
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State < MyHomePage > {
@@ -138,64 +139,68 @@ class _MyHomePageState extends State < MyHomePage > {
       _userTransactions.removeWhere((tx) => tx.id == id);
     });
   }
-
+  // Override the build method from the StatefulWidget to build the UI
+  // of the application based on the state of the widget.
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
+    // Define the app bar widget.
     final appBar = AppBar(
-            title: const Text(
-              'Personal Expenses',
-            ),
-            actions: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () => _startAddNewTransaction(context),
-              ),
-            ],
-          );
-
-      final txListWidget =  SizedBox(
-              height:(mediaQuery.size.height - appBar.preferredSize.height) * 0.7,
-              child: TransactionList(_userTransactions, _deleteTransaction));
-      final pageBody = SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: < Widget > [
-              if (isLandscape) Row(
+      title: const Text(
+          'Personal Expenses',
+        ),
+        actions: < Widget > [
+          IconButton(
+            icon: const Icon(Icons.add),
+              onPressed: () => _startAddNewTransaction(context),
+          ),
+        ],
+    );
+    // Define the transaction list widget.
+    final txListWidget = SizedBox(
+      height: (mediaQuery.size.height - appBar.preferredSize.height) * 0.7,
+      child: TransactionList(_userTransactions, _deleteTransaction));
+    // Define the page body widget.
+    final pageBody = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: < Widget > [
+            if (isLandscape) Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Text("Show Chart", style: Theme.of(context).textTheme.titleMedium,),
-              Switch.adaptive(
-                activeColor: Colors.amber[700],
-                value: _showChart,
-                onChanged: (val) {
-                setState(() {
-                  _showChart = val;
-                });
-              })
+                children: < Widget > [
+                  Text("Show Chart", style: Theme.of(context).textTheme.titleMedium, ),
+                  Switch.adaptive(
+                    activeColor: Colors.amber[700],
+                    value: _showChart,
+                    onChanged: (val) {
+                      setState(() {
+                        _showChart = val;
+                      });
+                    })
                 ],
               ),
               if (!isLandscape)
-              // A chart that displays the recent transactions.
-              SizedBox(
-                height:(mediaQuery.size.height - appBar.preferredSize.height -
-                mediaQuery.padding.top) * 0.25,
-                child: Chart(_recentTransactions)
+                // A chart that displays the recent transactions.
+                SizedBox(
+                  height: (mediaQuery.size.height - appBar.preferredSize.height -
+                    mediaQuery.padding.top) * 0.25,
+                  child: Chart(_recentTransactions)
                 ),
-              if (!isLandscape) txListWidget,
-              if (isLandscape) _showChart ?
-               SizedBox(
-                height:(mediaQuery.size.height - appBar.preferredSize.height -
-                mediaQuery.padding.top) * 0.7,
-                child: Chart(_recentTransactions)
-                ) : txListWidget
-            ],
-          ),
+                if (!isLandscape) txListWidget,
+                  if (isLandscape) _showChart ?
+                    SizedBox(
+                      height: (mediaQuery.size.height - appBar.preferredSize.height -
+                        mediaQuery.padding.top) * 0.7,
+                      child: Chart(_recentTransactions)
+                    ) : txListWidget
+          ],
         ),
-      );
-      return Scaffold(
+      ),
+    );
+    // Define the page body widget.
+    return Scaffold(
       appBar: appBar,
       body: pageBody,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
