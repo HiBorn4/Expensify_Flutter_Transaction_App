@@ -85,6 +85,7 @@ class MyHomePage extends StatefulWidget {
 
   // A stateful widget that creates a new instance of `_MyHomePageState`.
   @override
+  // ignore:, library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 

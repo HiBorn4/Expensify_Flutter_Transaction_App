@@ -61,7 +61,7 @@ class TransactionList extends StatelessWidget {
                     padding: const EdgeInsets.all(6),
                       // Text widget that shows the transaction amount
                       child: FittedBox(
-                        child: Text('\$${transactions[index].amount}'),
+                        child: Text('₹${transactions[index].amount}'),
                       ),
                   ),
                 ),
