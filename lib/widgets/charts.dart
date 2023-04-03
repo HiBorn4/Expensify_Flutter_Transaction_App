@@ -16,7 +16,7 @@ class Chart extends StatelessWidget {
   // Function to group the transaction values by day
   List < Map < String, Object >> get groupedTransactionValues {
     return List.generate(7, (index) {
-      final weekDay = DateTime.now().subtract(Duration(days: index));
+      final weekDay = DateTime.now().subtract(Duration(days: index + 1));
       double totalSum = 0.00;
 
       // Looping through the recent transactions to find the sum of amounts for each day
