@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // the main MaterialApp widget that configures the app's theme and routes
     return MaterialApp(
-      title: 'Personal Expenses',
+      title: 'Expenditures',
       theme: ThemeData(
         fontFamily: 'Quicksand',
         // configure the text theme for the app

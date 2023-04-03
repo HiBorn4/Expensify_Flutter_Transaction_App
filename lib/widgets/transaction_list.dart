@@ -26,7 +26,7 @@ class TransactionList extends StatelessWidget {
           children: < Widget > [
             // Text widget with a message when there are no transactions
             Text(
-              'No transactions added yet!',
+              'No transactions Added Yet!',
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(
