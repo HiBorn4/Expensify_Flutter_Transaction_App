@@ -57,12 +57,10 @@ Feel free to explore the codebase, make modifications, and customize the app to 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
-
-  <h2>Weekly Transaction Chart</h2>
-  <p>This chart represents the transactions in the past week:</p>
-  <div id="chart-container">
-    <!-- Add your chart bar component here -->
-  </div>
   
+<h2>Contact</h2>
+
+<p>If you have any questions or feedback, please contact me at <b>hiborn4@gmail.com</b> </p>
+</body>
+</html>
   
