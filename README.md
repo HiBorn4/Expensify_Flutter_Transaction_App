@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
+
+
+
+
   <title>My Transaction App</title>
   <style>
     /* Add your custom styles here */
