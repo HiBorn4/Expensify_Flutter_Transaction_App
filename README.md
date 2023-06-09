@@ -1,13 +1,4 @@
 
-
-
-
-  <title>My Transaction App</title>
-  <style>
-    /* Add your custom styles here */
-  </style>
-</head>
-<body>
   <h1>My Transaction App</h1>
   
   <h2>Transaction List</h2>
@@ -76,8 +67,3 @@
   <h3>Delete Transaction</h3>
   <img src="screenshots/delete_transaction.png" alt="Delete Transaction">
   
-  <script>
-    // Add your JavaScript code here
-  </script>
-</body>
-</html>
