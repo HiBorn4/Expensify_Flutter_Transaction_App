@@ -87,14 +87,17 @@ This project is licensed under the [MIT License](LICENSE).
   <h2>Screenshots</h2>
   
   <h3>Transaction List</h3>
-  <img src="screenshots/transaction_list.png" alt="Transaction List">
+  <img src="screenshots/transaction_list.jpg" alt="Transaction List">
+ 
+  <h3>Adding Parameters</h3>
+  <img src="screenshots/Data_set.jpg" alt="Transaction List">
   
   <h3>Weekly Transaction Chart</h3>
-  <img src="screenshots/weekly_chart.png" alt="Weekly Transaction Chart">
+  <img src="screenshots/Chart_bar.jpg" alt="Weekly Transaction Chart">
   
   <h3>Add Transaction</h3>
-  <img src="screenshots/add_transaction.png" alt="Add Transaction">
+  <img src="screenshots/add_transaction.jpg" alt="Add Transaction">
   
   <h3>Delete Transaction</h3>
-  <img src="screenshots/delete_transaction.png" alt="Delete Transaction">
+  <img src="screenshots/Choose_Date.jpg" alt="Delete Transaction">
   
