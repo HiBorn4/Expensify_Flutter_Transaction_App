@@ -8,24 +8,23 @@ import './new_transaction.dart';
 // Create a stateful widget named UserTransactions
 class UserTransactions extends StatefulWidget {
   // Create constructor for UserTransactions widget
-  const UserTransactions({
-    super.key
-  });
+  const UserTransactions({super.key});
 
   // Create a State object for UserTransactions widget
   @override
-  State < UserTransactions > createState() => _UserTransactionsState();
+  State<UserTransactions> createState() => _UserTransactionsState();
 }
 
 // Create a state object named _UserTransactionsState for UserTransactions widget
-class _UserTransactionsState extends State < UserTransactions > {
+class _UserTransactionsState extends State<UserTransactions> {
   // Create a list of transactions to store user's transaction history
-  final List < Transaction > _userTransaction = [];
+  final List<Transaction> _userTransaction = [];
 
   // A method to add new transaction to the list
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(String txName, String txTitle, double txAmount) {
     // Create a new Transaction object with given title, amount, and date
     final newTx = Transaction(
+      name: txName,
       title: txTitle,
       amount: txAmount,
       date: DateTime.now(),
@@ -37,12 +36,13 @@ class _UserTransactionsState extends State < UserTransactions > {
       _userTransaction.add(newTx);
     });
   }
+
   // A method to build the UserTransactions widget
   @override
   Widget build(BuildContext context) {
     // Return a column widget that contains NewTransaction widget
     return Column(
-      children: < Widget > [
+      children: <Widget>[
         NewTransaction(_addNewTransaction),
       ],
     );

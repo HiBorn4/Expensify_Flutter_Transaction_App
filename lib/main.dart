@@ -24,9 +24,7 @@ void main() {
 
 // Ihe top-level widget for the app
 class MyApp extends StatelessWidget {
-  const MyApp({
-    super.key
-  });
+  const MyApp({super.key});
 
   // the method that builds the widget tree
   @override
@@ -38,38 +36,44 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Quicksand',
         // configure the text theme for the app
         textTheme: ThemeData.light().textTheme.copyWith(
-          titleMedium: const TextStyle(
-              fontFamily: 'OpenSans',
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
+              titleMedium: const TextStyle(
+                fontFamily: 'OpenSans',
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+              labelLarge: const TextStyle(
+                color: Colors.white,
+              ),
             ),
-            labelLarge: const TextStyle(
-              color: Colors.white,
-            ),
-        ),
         // configure the app bar theme
         appBarTheme: AppBarTheme(
           // configure the app bar title text style
-          titleTextStyle: ThemeData.light().textTheme.copyWith(
-            titleMedium: const TextStyle(
-              fontFamily: 'OpenSans',
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ).titleLarge,
+          titleTextStyle: ThemeData.light()
+              .textTheme
+              .copyWith(
+                titleMedium: const TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+              .titleLarge,
           // configure the app bar toolbar text style
-          toolbarTextStyle: ThemeData.light().textTheme.copyWith(
-            titleMedium: const TextStyle(
-              fontFamily: 'OpenSans',
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ).bodyMedium,
+          toolbarTextStyle: ThemeData.light()
+              .textTheme
+              .copyWith(
+                titleMedium: const TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+              .bodyMedium,
         ),
         // configure the color scheme for the app
         colorScheme:
-        ColorScheme.fromSwatch(primarySwatch: Colors.purple).copyWith(
-          secondary: Colors.amber,
+            ColorScheme.fromSwatch(primarySwatch: Colors.grey).copyWith(
+          secondary: Colors.white,
         ),
       ),
       // set the home page to be MyHomePage widget
@@ -79,9 +83,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({
-    super.key
-  });
+  const MyHomePage({super.key});
 
   // A stateful widget that creates a new instance of `_MyHomePageState`.
   @override
@@ -89,14 +91,14 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State < MyHomePage > {
+class _MyHomePageState extends State<MyHomePage> {
   // A list of `Transaction` objects.
-  final List < Transaction > _userTransactions = [];
+  final List<Transaction> _userTransactions = [];
   // ignore: unused_field
   bool _showChart = false;
 
   // A method that returns a list of recent transactions within the last 7 days.
-  List < Transaction > get _recentTransactions {
+  List<Transaction> get _recentTransactions {
     return _userTransactions.where((tx) {
       return tx.date.isAfter(
         DateTime.now().subtract(
@@ -107,8 +109,10 @@ class _MyHomePageState extends State < MyHomePage > {
   }
 
   // A method that adds a new transaction to the list of `_userTransactions`.
-  void _addNewTransaction(String txTitle, double txAmount, DateTime choosenDate) {
+  void _addNewTransaction(
+      String txName, String txTitle, double txAmount, DateTime choosenDate) {
     final newTx = Transaction(
+      name: txName,
       title: txTitle,
       amount: txAmount,
       date: choosenDate,
@@ -140,6 +144,7 @@ class _MyHomePageState extends State < MyHomePage > {
       _userTransactions.removeWhere((tx) => tx.id == id);
     });
   }
+
   // Override the build method from the StatefulWidget to build the UI
   // of the application based on the state of the widget.
   @override
@@ -149,53 +154,61 @@ class _MyHomePageState extends State < MyHomePage > {
     // Define the app bar widget.
     final appBar = AppBar(
       title: const Text(
-          'Personal Expenses',
+        'Personal Expenses',
+      ),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.add),
+          onPressed: () => _startAddNewTransaction(context),
         ),
-        actions: < Widget > [
-          IconButton(
-            icon: const Icon(Icons.add),
-              onPressed: () => _startAddNewTransaction(context),
-          ),
-        ],
+      ],
     );
     // Define the transaction list widget.
     final txListWidget = SizedBox(
-      height: (mediaQuery.size.height - appBar.preferredSize.height) * 0.7,
-      child: TransactionList(_userTransactions, _deleteTransaction));
+        height: (mediaQuery.size.height - appBar.preferredSize.height) * 0.7,
+        child: TransactionList(_userTransactions, _deleteTransaction));
     // Define the page body widget.
     final pageBody = SafeArea(
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: < Widget > [
-            if (isLandscape) Row(
+          children: <Widget>[
+            if (isLandscape)
+              Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: < Widget > [
-                  Text("Show Chart", style: Theme.of(context).textTheme.titleMedium, ),
+                children: <Widget>[
+                  Text(
+                    "Show Chart",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
                   Switch.adaptive(
-                    activeColor: Colors.amber[700],
-                    value: _showChart,
-                    onChanged: (val) {
-                      setState(() {
-                        _showChart = val;
-                      });
-                    })
+                      activeColor: Colors.amber[700],
+                      value: _showChart,
+                      onChanged: (val) {
+                        setState(() {
+                          _showChart = val;
+                        });
+                      })
                 ],
               ),
-              if (!isLandscape)
-                // A chart that displays the recent transactions.
-                SizedBox(
-                  height: (mediaQuery.size.height - appBar.preferredSize.height -
-                    mediaQuery.padding.top) * 0.25,
-                  child: Chart(_recentTransactions)
-                ),
-                if (!isLandscape) txListWidget,
-                  if (isLandscape) _showChart ?
-                    SizedBox(
-                      height: (mediaQuery.size.height - appBar.preferredSize.height -
-                        mediaQuery.padding.top) * 0.7,
-                      child: Chart(_recentTransactions)
-                    ) : txListWidget
+            if (!isLandscape)
+              // A chart that displays the recent transactions.
+              SizedBox(
+                  height: (mediaQuery.size.height -
+                          appBar.preferredSize.height -
+                          mediaQuery.padding.top) *
+                      0.25,
+                  child: Chart(_recentTransactions)),
+            if (!isLandscape) txListWidget,
+            if (isLandscape)
+              _showChart
+                  ? SizedBox(
+                      height: (mediaQuery.size.height -
+                              appBar.preferredSize.height -
+                              mediaQuery.padding.top) *
+                          0.7,
+                      child: Chart(_recentTransactions))
+                  : txListWidget
           ],
         ),
       ),
@@ -207,7 +220,7 @@ class _MyHomePageState extends State < MyHomePage > {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-          onPressed: () => _startAddNewTransaction(context),
+        onPressed: () => _startAddNewTransaction(context),
       ),
     );
   }
