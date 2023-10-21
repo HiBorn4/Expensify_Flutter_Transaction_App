@@ -1,5 +1,5 @@
 
-  <h1>My Transaction App</h1>
+  <h1>My Transaction App</h1> 
 
 Welcome to the My Transaction App! This app allows you to manage your transactions and view them in a chart bar format. You can add new transactions, delete existing transactions, and track your expenses.
 
